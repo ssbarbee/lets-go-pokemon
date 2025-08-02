@@ -5,9 +5,8 @@ export default function Home() {
     return (
         <div className="container mx-auto p-4">
             <Head>
-                <title>Pokédex</title>
+                <title>Let's go Pokémon!</title>
             </Head>
-            <h1 className="text-3xl font-bold text-center mb-6">Pokédex</h1>
             <PokemonList />
         </div>
     );
