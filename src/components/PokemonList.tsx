@@ -1,6 +1,8 @@
 import { PokemonCard } from './PokemonCard';
 import { useSearchPokemon } from '@/hooks/useSearchPokemon';
 import { usePokemons } from '@/hooks/usePokemons';
+import React from 'react';
+import { FloatingBackground } from '@/components/FloatingBackground';
 
 export const PokemonList = () => {
     const { data: pokemons = [], isLoading, isError } = usePokemons();
@@ -37,6 +39,7 @@ export const PokemonList = () => {
                     ))}
                 </div>
             )}
+            {isLanding && (<FloatingBackground />)}
         </div>
     );
 };
