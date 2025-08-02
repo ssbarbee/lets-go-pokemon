@@ -7,11 +7,12 @@ export const FloatingBackground = () => {
             {floatingPokemons.map((poke, idx) => (
                 <div
                     key={idx}
-                    className="absolute group transition-all duration-300 ease-in-out cursor-pointer"
+                    className={`absolute group transition-all duration-300 ease-in-out cursor-pointer idle-float`}
                     style={{
                         top: poke.position.top,
                         left: poke.position.left,
                         zIndex: 1,
+                        animationDelay: `${(idx % 5) * 0.5}s`, // Staggered float
                     }}
                     onMouseEnter={(e) => e.currentTarget.style.zIndex = '50'}
                     onMouseLeave={(e) => e.currentTarget.style.zIndex = '1'}
