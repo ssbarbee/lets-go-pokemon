@@ -1,24 +1,24 @@
 import { useQuery } from '@tanstack/react-query';
-import { Pokemon } from '@/types/pokemon';
 
-const fetchPokemons = async (): Promise<Pokemon[]> => {
-    const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=50');
-    const data = await res.json();
-
-    const detailedData = await Promise.all(
-        data.results.map(async (p: { url: string }) => {
-            const resp = await fetch(p.url);
-            return resp.json();
-        })
-    );
-
-    return detailedData;
+export type PokemonNameIdDto = {
+    name: string;
+    id: number;
 };
 
 export const usePokemons = () => {
-    return useQuery<Pokemon[]>({
-        queryKey: ['pokemons'],
-        queryFn: fetchPokemons,
-        staleTime: 1000 * 60 * 5, // 5 minutes
+    return useQuery<PokemonNameIdDto[]>({
+        queryKey: ['pokemon-names'],
+        queryFn: async () => {
+            const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1302');
+            const data = await res.json();
+
+            return data.results.map((p: { name: string; url: string }) => {
+                const segments = p.url.split('/').filter(Boolean);
+                const id = parseInt(segments[segments.length - 1], 10);
+
+                return { name: p.name, id };
+            });
+        },
+        staleTime: 1000 * 60 * 30, // 30 minutes
     });
 };

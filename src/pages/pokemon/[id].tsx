@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { PokemonDetails } from '@/components/PokemonDetails';
-import { usePokemon } from '@/hooks/usePokemon';
+import { usePokemonDetails } from '@/hooks/usePokemonDetails';
 import { PokemonType } from '@/types/pokemon';
 
 const typeBackgrounds: Record<PokemonType, string> = {
@@ -28,7 +28,7 @@ const PokemonPage = () => {
     const router = useRouter();
     const { id } = router.query;
 
-    const { data: pokemon, isLoading, isError } = usePokemon(id as string);
+    const { data: pokemon, isLoading, isError } = usePokemonDetails(id as string);
 
     if (isLoading) return <div className="flex justify-center items-center h-full text-gray-500 text-xl">Loading...</div>;
     if (isError) return <div className="flex justify-center items-center h-full text-red-500 text-xl">Failed to fetch

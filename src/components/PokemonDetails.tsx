@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useEvolutionChain } from '@/hooks/useEvolutionChain';
 import { EvolutionDrawer } from './EvolutionDrawer';
-import { Pokemon, PokemonType } from '@/types/pokemon';
 import { BeakerIcon } from '@heroicons/react/24/solid';
+import { Pokemon, PokemonType } from '@/hooks/usePokemonDetails';
 
 const typeColorHexMap: Record<PokemonType, string> = {
     fire: '#FF7F50',

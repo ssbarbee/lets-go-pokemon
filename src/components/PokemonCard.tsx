@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { PokemonListItem } from '@/hooks/usePokemonNames';
+import { PokemonNameIdDto } from '@/hooks/usePokemons';
 import { useInView } from 'react-intersection-observer';
 import Image, { ImageProps } from 'next/image';
-import { usePokemon } from '@/hooks/usePokemon';
+import { usePokemonDetails } from '@/hooks/usePokemonDetails';
 import { typeColors } from '@/components/PokemonDetails';
 import { useState } from 'react';
 
@@ -18,9 +18,9 @@ export const PokemonImage = (props: ImageProps) => {
     );
 };
 
-export const PokemonCard = ({ pokemon: { id, name } }: { pokemon: PokemonListItem }) => {
+export const PokemonCard = ({ pokemon: { id, name } }: { pokemon: PokemonNameIdDto }) => {
     const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
-    const { data: pokemon, isLoading, isError } = usePokemon(inView ? name : '');
+    const { data: pokemon, isLoading, isError } = usePokemonDetails(inView ? name : '');
 
     const primaryType = pokemon?.types[0]?.type.name;
     const gradient = primaryType ? (typeColors[primaryType] || 'from-gray-300 to-gray-500') : 'from-gray-200 to-gray-400';

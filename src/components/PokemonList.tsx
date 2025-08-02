@@ -2,11 +2,11 @@ import { PokemonCard } from './PokemonCard';
 import { useSearchPokemon } from '@/hooks/useSearchPokemon';
 import React, { useRef } from 'react';
 import { FloatingBackground } from '@/components/FloatingBackground';
-import { usePokemonNames } from '@/hooks/usePokemonNames';
+import { usePokemons } from '@/hooks/usePokemons';
 import { useVirtualizer } from '@tanstack/react-virtual';
 
 export const PokemonList = () => {
-    const { data: pokemons = [], isLoading, isError } = usePokemonNames();
+    const { data: pokemons = [], isLoading, isError } = usePokemons();
     const { query, handleSearch } = useSearchPokemon();
 
     const filtered = pokemons.filter((p) =>
