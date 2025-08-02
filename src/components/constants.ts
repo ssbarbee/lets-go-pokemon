@@ -5,7 +5,7 @@ export const floatingPokemons = [
         src: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png',
         label: 'Pikachu',
         colors: ['#FFD700', '#FFC300', '#FFB300'],
-        position: { top: '15%', left: '20%' },
+        position: { top: '22%', left: '27%' },
     },
     {
         id: 1,
@@ -19,7 +19,7 @@ export const floatingPokemons = [
         src: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png',
         label: 'Charmander',
         colors: ['#FFA07A', '#FF7F50', '#FF6347'],
-        position: { top: '10%', left: '45%' },
+        position: { top: '32%', left: '45%' },
     },
     {
         id: 7,
@@ -68,7 +68,7 @@ export const floatingPokemons = [
         src: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/54.png',
         label: 'Psyduck',
         colors: ['#FFE066', '#FFCC00', '#D4B300'],
-        position: { top: '15%', left: '55%' },
+        position: { top: '22%', left: '55%' },
     },
     {
         id: 92,

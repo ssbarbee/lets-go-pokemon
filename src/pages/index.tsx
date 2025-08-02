@@ -3,7 +3,7 @@ import { PokemonList } from '@/components/PokemonList';
 
 export default function Home() {
     return (
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto">
             <Head>
                 <title>Let's go Pokémon!</title>
             </Head>

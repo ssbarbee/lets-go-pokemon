@@ -23,28 +23,31 @@ export const PokemonList = () => {
     const virtualizer = useVirtualizer({
         count: rowCount,
         getScrollElement: () => parentRef.current,
-        estimateSize: () => 220, // Approx height of a row
+        estimateSize: () => 220,
         overscan: 5,
     });
 
     return (
-        <div className={`relative min-h-screen ${isLanding ? 'backdrop-blur-md' : 'bg-transparent'}`}>
-            <div
-                className={`${
-                    isLanding ? 'flex justify-center items-center min-h-screen' : 'py-8 px-4'
-                }`}
-            >
+        <div className="relative min-h-screen bg-transparent">
+            {/* Floating Background Always Present */}
+            <div className={`absolute inset-0 z-0 transition-opacity duration-500 ${isLanding ? 'opacity-100' : 'opacity-30 blur-sm'}`}>
+                <FloatingBackground />
+            </div>
+
+            {/* Sticky Header Input */}
+            <div className="sticky top-0 z-50 bg-transparent backdrop-blur-md py-4 flex justify-center">
                 <input
                     type="text"
                     placeholder="Explore the world of Pokémon"
                     value={query}
                     onChange={handleSearch}
-                    className="w-full max-w-xl px-6 py-4 text-2xl rounded-3xl border border-gray-300 shadow-lg focus:outline-none focus:ring-4 focus:ring-yellow-300 bg-white backdrop-blur-sm placeholder-gray-400 text-center transition"
+                    className="w-full max-w-xl px-6 py-4 text-2xl rounded-3xl border border-gray-300 shadow-lg focus:outline-none focus:ring-4 focus:ring-yellow-300 bg-white placeholder-gray-400 text-center transition"
                 />
             </div>
 
+            {/* Results Grid (Only when searching) */}
             {!isLanding && (
-                <div ref={parentRef} className="h-[80vh] overflow-auto px-4">
+                <div ref={parentRef} className="h-[80vh] overflow-auto px-4 z-10 relative">
                     {isLoading && <div>Loading...</div>}
                     {isError && <div>Failed to fetch Pokémon.</div>}
 
@@ -68,7 +71,6 @@ export const PokemonList = () => {
                     </div>
                 </div>
             )}
-            {isLanding && (<FloatingBackground />)}
         </div>
     );
 };
