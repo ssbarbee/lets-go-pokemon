@@ -30,8 +30,8 @@ export const PokemonList = () => {
     return (
         <div className="relative min-h-screen bg-transparent">
             {/* Floating Background Always Present */}
-            <div className={`absolute inset-0 z-0 transition-opacity duration-500 ${isLanding ? 'opacity-100' : 'opacity-30 blur-sm'}`}>
-                <FloatingBackground />
+            <div className={`absolute inset-0 z-0 transition-all duration-500 ${isLanding ? 'opacity-100' : 'opacity-50 backdrop-blur-sm bg-white/70'}`}>
+                <FloatingBackground/>
             </div>
 
             {/* Sticky Header Input */}

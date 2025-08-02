@@ -1,9 +1,22 @@
 import Link from 'next/link';
 import { PokemonListItem } from '@/hooks/usePokemonNames';
 import { useInView } from 'react-intersection-observer';
-import Image from 'next/image';
+import Image, { ImageProps } from 'next/image';
 import { usePokemon } from '@/hooks/usePokemon';
 import { typeColors } from '@/components/PokemonDetails';
+import { useState } from 'react';
+
+export const PokemonImage = (props: ImageProps) => {
+    const [imgSrc, setImgSrc] = useState(props.src);
+
+    return (
+        <Image
+            {...props}
+            src={imgSrc}
+            onError={() => setImgSrc('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png')}
+        />
+    );
+};
 
 export const PokemonCard = ({ pokemon: { id, name } }: { pokemon: PokemonListItem }) => {
     const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
@@ -19,7 +32,7 @@ export const PokemonCard = ({ pokemon: { id, name } }: { pokemon: PokemonListIte
                 className={`rounded-xl shadow-lg p-4 bg-gradient-to-br ${gradient} text-white hover:scale-105 transition cursor-pointer flex flex-col items-center
         focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-400`}
             >
-                <Image
+                <PokemonImage
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
                     alt={name}
                     width={96}
