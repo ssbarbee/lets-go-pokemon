@@ -1,7 +1,10 @@
 {
-  "name": "pokeapi-app",
+  "name": "lets-go-pokemon",
   "version": "0.1.0",
   "private": true,
+  "repository": "https://github.com/ssbarbee/lets-go-pokemon",
+  "license": "MIT",
+  "author": "ssbarbee",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -29,7 +32,6 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",
-    "eslint": "^9",
     "eslint-config-next": "15.4.5",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17",
