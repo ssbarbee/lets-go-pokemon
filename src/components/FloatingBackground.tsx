@@ -1,29 +1,20 @@
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 import { floatingPokemons } from './constants';
 
 export const FloatingBackground = () => {
-    const [positions, setPositions] = useState<{ top: string; left: string }[]>([]);
-
-    useEffect(() => {
-        setPositions(
-            floatingPokemons.map(() => ({
-                top: `${Math.random() * 80 + 10}%`,
-                left: `${Math.random() * 80 + 10}%`,
-            }))
-        );
-    }, []);
-
     return (
         <div className="absolute inset-0 overflow-hidden z-0">
             {floatingPokemons.map((poke, idx) => (
                 <div
                     key={idx}
-                    className="absolute group transition-all duration-300 ease-in-out"
+                    className="absolute group transition-all duration-300 ease-in-out cursor-pointer"
                     style={{
-                        top: positions[idx]?.top,
-                        left: positions[idx]?.left,
+                        top: poke.position.top,
+                        left: poke.position.left,
+                        zIndex: 1,
                     }}
+                    onMouseEnter={(e) => e.currentTarget.style.zIndex = '50'}
+                    onMouseLeave={(e) => e.currentTarget.style.zIndex = '1'}
                 >
                     <div className="relative flex items-center justify-center w-20 h-20 rounded-full bg-white bg-opacity-30 backdrop-blur-md group-hover:scale-125 transition">
                         <Image
