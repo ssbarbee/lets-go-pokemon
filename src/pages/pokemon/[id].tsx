@@ -30,8 +30,9 @@ const PokemonPage = () => {
 
     const { data: pokemon, isLoading, isError } = usePokemon(id as string);
 
-    if (isLoading) return <div>Loading...</div>;
-    if (isError) return <div>Failed to fetch Pokémon details.</div>;
+    if (isLoading) return <div className="flex justify-center items-center h-full text-gray-500 text-xl">Loading...</div>;
+    if (isError) return <div className="flex justify-center items-center h-full text-red-500 text-xl">Failed to fetch
+        Pokémon details.</div>;
     if (!pokemon) return null;
 
     const primaryType = pokemon.types[0].type.name;
