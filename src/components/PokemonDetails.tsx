@@ -60,14 +60,14 @@ export const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
 
     return (
         <>
-            <div className={`min-h-screen p-6 rounded-xl shadow-xl bg-gradient-to-br ${gradient} text-white max-w-md mx-auto flex-1 relative`}>
+            <div className={`w-full sm:max-w-md min-h-screen p-6 sm:rounded-xl shadow-xl bg-gradient-to-br ${gradient} text-white mx-auto flex-1 relative`}>
                 <div className="flex flex-col items-center">
                     <div className="relative">
                         <img
                             src={pokemon.sprites.other['official-artwork'].front_default}
                             alt={pokemon.name}
                             className={`w-40 h-40 mb-4 drop-shadow-lg rounded-full type-aura`}
-                            style={{ border: `5px solid ${colorHex}` }}
+                            style={{border: `5px solid ${colorHex}`}}
                         />
                         {evolutions && evolutions.length > 1 && (
                             <button
@@ -102,7 +102,7 @@ export const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
                                     <div className="w-full bg-white bg-opacity-20 h-3 rounded overflow-hidden">
                                         <div
                                             className="h-full bg-white bg-opacity-70 rounded transition-all duration-1000"
-                                            style={{ width: `${s.base_stat / 2}%` }}
+                                            style={{width: `${s.base_stat / 2}%`}}
                                         />
                                     </div>
                                 </div>
