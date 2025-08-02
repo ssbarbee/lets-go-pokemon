@@ -1,11 +1,11 @@
 import { PokemonCard } from './PokemonCard';
 import { useSearchPokemon } from '@/hooks/useSearchPokemon';
-import { usePokemons } from '@/hooks/usePokemons';
 import React from 'react';
 import { FloatingBackground } from '@/components/FloatingBackground';
+import { usePokemonNames } from '@/hooks/usePokemonNames';
 
 export const PokemonList = () => {
-    const { data: pokemons = [], isLoading, isError } = usePokemons();
+    const { data: pokemons = [], isLoading, isError } = usePokemonNames();
     const { query, handleSearch } = useSearchPokemon();
 
     const filtered = pokemons.filter((p) =>
