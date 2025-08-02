@@ -2,6 +2,8 @@
 
 A beautifully interactive Pokémon Explorer built with **Next.js**, **React Query**, and **Tailwind CSS**, powered by the [PokéAPI](https://pokeapi.co/).
 
+Have a look at deployed version of [Let's go Pokemon](https://lets-go-pokemon.vercel.app)
+
 Explore the world of Pokémon with:
 - Dynamic Search with Floating Background
 - Smooth Virtualized Grid Rendering

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "repository": "https://github.com/ssbarbee/lets-go-pokemon",
+  "homepage": "https://lets-go-pokemon.vercel.app",
   "license": "MIT",
   "author": "ssbarbee",
   "scripts": {
