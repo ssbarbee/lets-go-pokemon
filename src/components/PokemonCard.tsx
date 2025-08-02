@@ -13,10 +13,11 @@ export const PokemonCard = ({ pokemon: { id, name } }: { pokemon: PokemonListIte
     const gradient = primaryType ? (typeColors[primaryType] || 'from-gray-300 to-gray-500') : 'from-gray-200 to-gray-400';
 
     return (
-        <Link href={`/pokemon/${id}`}>
-            <div
+        <Link href={`/pokemon/${id}`} legacyBehavior>
+            <a
                 ref={ref}
-                className={`rounded-xl shadow-lg p-4 bg-gradient-to-br ${gradient} text-white hover:scale-105 transition cursor-pointer flex flex-col items-center`}
+                className={`rounded-xl shadow-lg p-4 bg-gradient-to-br ${gradient} text-white hover:scale-105 transition cursor-pointer flex flex-col items-center
+        focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-400`}
             >
                 <Image
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
@@ -41,7 +42,7 @@ export const PokemonCard = ({ pokemon: { id, name } }: { pokemon: PokemonListIte
                         </>
                     )}
                 </div>
-            </div>
+            </a>
         </Link>
     );
 };
