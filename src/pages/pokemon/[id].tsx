@@ -1,33 +1,15 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Pokemon } from '@/types/pokemon';
 import { PokemonDetails } from '@/components/PokemonDetails';
+import { usePokemon } from '@/hooks/usePokemon';
 
 const PokemonPage = () => {
     const router = useRouter();
     const { id } = router.query;
-    const [pokemon, setPokemon] = useState<Pokemon | null>(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
 
-    useEffect(() => {
-        if (!id) return;
-        const fetchPokemon = async () => {
-            try {
-                const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-                setPokemon(res.data);
-            } catch {
-                setError('Failed to fetch Pokémon details.');
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchPokemon();
-    }, [id]);
+    const { data: pokemon, isLoading, isError } = usePokemon(id as string);
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>{error}</div>;
+    if (isLoading) return <div>Loading...</div>;
+    if (isError) return <div>Failed to fetch Pokémon details.</div>;
     if (!pokemon) return null;
 
     return (
