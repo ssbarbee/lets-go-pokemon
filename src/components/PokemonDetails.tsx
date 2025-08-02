@@ -1,29 +1,53 @@
 import { useState } from 'react';
 import { useEvolutionChain } from '@/hooks/useEvolutionChain';
 import { EvolutionDrawer } from './EvolutionDrawer';
-import Link from 'next/link';
-import { Pokemon } from '@/types/pokemon';
+import { Pokemon, PokemonType } from '@/types/pokemon';
 import { BeakerIcon } from '@heroicons/react/24/solid';
 
-const typeColorHex = (type: string) => {
-    const map: Record<string, string> = {
-        fire: '#FF7F50',
-        water: '#5DADE2',
-        grass: '#58D68D',
-        electric: '#F4D03F',
-        psychic: '#D98880',
-        normal: '#BFC9CA',
-    };
-    return map[type] || '#BDC3C7';
+const typeColorHexMap: Record<PokemonType, string> = {
+    fire: '#FF7F50',
+    water: '#5DADE2',
+    grass: '#58D68D',
+    electric: '#F4D03F',
+    psychic: '#D98880',
+    normal: '#BFC9CA',
+    ice: '#A8E6FF',
+    rock: '#BCAAA4',
+    ground: '#D7CCC8',
+    bug: '#A8B820',
+    fighting: '#C62828',
+    flying: '#81D4FA',
+    ghost: '#7E57C2',
+    poison: '#AB47BC',
+    steel: '#B0BEC5',
+    dragon: '#5C6BC0',
+    fairy: '#F8BBD0',
+    dark: '#616161',
 };
 
-const typeColors: Record<string, string> = {
+const typeColorHex = (type: PokemonType): string => {
+    return typeColorHexMap[type] || '#BDC3C7';
+};
+
+const typeColors: Record<PokemonType, string> = {
     fire: 'from-orange-400 to-red-600',
     water: 'from-blue-400 to-blue-700',
     grass: 'from-green-400 to-green-700',
     electric: 'from-yellow-300 to-yellow-600',
     psychic: 'from-pink-400 to-pink-600',
     normal: 'from-gray-300 to-gray-500',
+    ice: 'from-blue-200 to-blue-400',
+    rock: 'from-yellow-400 to-yellow-700',
+    ground: 'from-yellow-500 to-orange-700',
+    bug: 'from-lime-400 to-green-600',
+    fighting: 'from-red-400 to-red-700',
+    flying: 'from-blue-200 to-blue-500',
+    ghost: 'from-purple-400 to-purple-700',
+    poison: 'from-fuchsia-400 to-fuchsia-700',
+    steel: 'from-gray-400 to-gray-600',
+    dragon: 'from-indigo-500 to-purple-800',
+    fairy: 'from-pink-300 to-pink-600',
+    dark: 'from-gray-700 to-gray-900',
 };
 
 export const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
