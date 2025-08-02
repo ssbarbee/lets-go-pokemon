@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    height: 100%;
+}
+
 @keyframes idle-float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
@@ -17,5 +24,15 @@
 }
 
 .type-aura {
-    animation: type-aura 3s ease-in-out infinite;
+    animation: type-aura 1s ease-in-out infinite;
+}
+
+.noise-overlay {
+    pointer-events: none;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAQAAAD9CzEMAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5QUDFSc8ZBGX7wAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAeklEQVRYw+3YwQnAIAxF0c94/zGmhA1RUYXzYfs3jRDFo63eFUsM2MCBgkXQIMKQZhpCCCEsQTAgU5TYQYZyQ2hnT08BKRbN2dlqCRQCnJePJEz4v3bbpD3X7A5Fr5UEzDNfLAAAAABJRU5ErkJggg==');
+    background-repeat: repeat;
+    opacity: 0.05;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
 }

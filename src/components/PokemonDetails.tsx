@@ -15,25 +15,26 @@ const typeColorHex = (type: string) => {
     return map[type] || '#BDC3C7';
 };
 
+const typeColors: Record<string, string> = {
+    fire: 'from-orange-400 to-red-600',
+    water: 'from-blue-400 to-blue-700',
+    grass: 'from-green-400 to-green-700',
+    electric: 'from-yellow-300 to-yellow-600',
+    psychic: 'from-pink-400 to-pink-600',
+    normal: 'from-gray-300 to-gray-500',
+    // Add more as needed
+};
+
 export const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
     const { data: evolutions } = useEvolutionChain(pokemon.id);
 
     const primaryType = pokemon.types[0].type.name;
 
-    const typeColors: Record<string, string> = {
-        fire: 'from-orange-400 to-red-600',
-        water: 'from-blue-400 to-blue-700',
-        grass: 'from-green-400 to-green-700',
-        electric: 'from-yellow-300 to-yellow-600',
-        psychic: 'from-pink-400 to-pink-600',
-        normal: 'from-gray-300 to-gray-500',
-        // Add more as needed
-    };
 
     const gradient = typeColors[primaryType] || 'from-gray-300 to-gray-500';
 
     return (
-        <div className={`p-6 rounded-xl shadow-xl bg-gradient-to-br ${gradient} text-white max-w-md mx-auto`}>
+        <div className={`p-6 rounded-xl shadow-xl bg-gradient-to-br ${gradient} text-white max-w-md mx-auto flex-1`}>
             <div className="flex flex-col items-center">
                 <img
                     src={pokemon.sprites.other['official-artwork'].front_default}
