@@ -72,11 +72,11 @@ export const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
                         {evolutions && evolutions.length > 1 && (
                             <button
                                 onClick={() => setShowDrawer(true)}
-                                className="absolute bottom-3 right-0 rounded-full p-2 shadow-lg transition"
-                                style={{ backgroundColor: colorHex }}
+                                className="absolute bottom-3 right-0 rounded-full p-2 shadow-lg transition animate-rock glow-shadow"
+                                style={{backgroundColor: colorHex}}
                                 aria-label="Show Evolution Drawer"
                             >
-                                <BeakerIcon className="w-6 h-6 text-white" />
+                                <BeakerIcon className="w-6 h-6 text-white"/>
                             </button>
                         )}
                     </div>

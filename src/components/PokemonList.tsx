@@ -28,7 +28,7 @@ export const PokemonList = () => {
     });
 
     return (
-        <div className={`relative min-h-screen ${isLanding ? 'backdrop-blur-md' : 'bg-gray-50'}`}>
+        <div className={`relative min-h-screen ${isLanding ? 'backdrop-blur-md' : 'bg-transparent'}`}>
             <div
                 className={`${
                     isLanding ? 'flex justify-center items-center min-h-screen' : 'py-8 px-4'

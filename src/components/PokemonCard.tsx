@@ -26,20 +26,21 @@ export const PokemonCard = ({ pokemon: { id, name } }: { pokemon: PokemonListIte
                     loading="lazy"
                     className="mb-2 drop-shadow"
                 />
-                <h2 className="text-lg font-bold capitalize">{name}</h2>
-
-                {pokemon && !isLoading && !isError && (
-                    <div className="flex gap-2 mt-2 flex-wrap justify-center">
-                        {pokemon.types.map((t) => (
-                            <span
-                                key={t.type.name}
-                                className="text-xs bg-black bg-opacity-20 rounded-full px-2 py-1 capitalize"
-                            >
-                                {t.type.name}
-                            </span>
-                        ))}
-                    </div>
-                )}
+                <h2 className="text-lg font-bold capitalize truncate w-full text-center" title={name}>{name}</h2>
+                <div className="flex gap-2 mt-2 flex-wrap justify-center">
+                    {pokemon && !isLoading && !isError && (
+                        <>
+                            {pokemon.types.map((t) => (
+                                <span
+                                    key={t.type.name}
+                                    className="text-xs bg-black bg-opacity-20 rounded-full px-2 py-1 capitalize"
+                                >
+                                    {t.type.name}
+                                </span>
+                            ))}
+                        </>
+                    )}
+                </div>
             </div>
         </Link>
     );
