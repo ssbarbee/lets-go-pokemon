@@ -1,8 +1,9 @@
 import { PokemonCard } from './PokemonCard';
 import { useSearchPokemon } from '@/hooks/useSearchPokemon';
-import React from 'react';
+import React, { useRef } from 'react';
 import { FloatingBackground } from '@/components/FloatingBackground';
 import { usePokemonNames } from '@/hooks/usePokemonNames';
+import { useVirtualizer } from '@tanstack/react-virtual';
 
 export const PokemonList = () => {
     const { data: pokemons = [], isLoading, isError } = usePokemonNames();
@@ -13,6 +14,18 @@ export const PokemonList = () => {
     );
 
     const isLanding = query.trim() === '';
+
+    const parentRef = useRef<HTMLDivElement>(null);
+
+    const itemsPerRow = 4;
+    const rowCount = Math.ceil(filtered.length / itemsPerRow);
+
+    const virtualizer = useVirtualizer({
+        count: rowCount,
+        getScrollElement: () => parentRef.current,
+        estimateSize: () => 220, // Approx height of a row
+        overscan: 5,
+    });
 
     return (
         <div className={`relative min-h-screen ${isLanding ? 'backdrop-blur-md' : 'bg-gray-50'}`}>
@@ -31,12 +44,28 @@ export const PokemonList = () => {
             </div>
 
             {!isLanding && (
-                <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-6 px-4">
+                <div ref={parentRef} className="h-[80vh] overflow-auto px-4">
                     {isLoading && <div>Loading...</div>}
                     {isError && <div>Failed to fetch Pokémon.</div>}
-                    {filtered.map((p) => (
-                        <PokemonCard key={p.id} pokemon={p} />
-                    ))}
+
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 relative" style={{ height: virtualizer.getTotalSize() }}>
+                        {virtualizer.getVirtualItems().map((virtualRow) => {
+                            const startIndex = virtualRow.index * itemsPerRow;
+                            const rowItems = filtered.slice(startIndex, startIndex + itemsPerRow);
+
+                            return (
+                                <div
+                                    key={virtualRow.index}
+                                    className="grid grid-cols-2 md:grid-cols-4 gap-6 absolute w-full"
+                                    style={{ transform: `translateY(${virtualRow.start}px)` }}
+                                >
+                                    {rowItems.map((pokemon) => (
+                                        <PokemonCard key={pokemon.id} pokemon={pokemon} />
+                                    ))}
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
             )}
             {isLanding && (<FloatingBackground />)}
