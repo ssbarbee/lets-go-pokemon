@@ -15,10 +15,10 @@ export const PokemonList = () => {
     const isLanding = query.trim() === '';
 
     return (
-        <div className={`relative min-h-screen ${isLanding ? 'backdrop-blur-md' : ''}`}>
+        <div className={`relative min-h-screen ${isLanding ? 'backdrop-blur-md' : 'bg-gray-50'}`}>
             <div
                 className={`${
-                    isLanding ? 'flex justify-center items-center min-h-screen' : ''
+                    isLanding ? 'flex justify-center items-center min-h-screen' : 'py-8 px-4'
                 }`}
             >
                 <input
@@ -31,11 +31,11 @@ export const PokemonList = () => {
             </div>
 
             {!isLanding && (
-                <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-6 px-4">
                     {isLoading && <div>Loading...</div>}
                     {isError && <div>Failed to fetch Pokémon.</div>}
                     {filtered.map((p) => (
-                        <PokemonCard key={p.id} pokemon={p}/>
+                        <PokemonCard key={p.id} pokemon={p} />
                     ))}
                 </div>
             )}

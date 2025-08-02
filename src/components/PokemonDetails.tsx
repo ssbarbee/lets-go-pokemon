@@ -29,7 +29,7 @@ const typeColorHex = (type: PokemonType): string => {
     return typeColorHexMap[type] || '#BDC3C7';
 };
 
-const typeColors: Record<PokemonType, string> = {
+export const typeColors: Record<PokemonType, string> = {
     fire: 'from-orange-400 to-red-600',
     water: 'from-blue-400 to-blue-700',
     grass: 'from-green-400 to-green-700',
