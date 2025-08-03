@@ -64,17 +64,33 @@ src/
   components/   // UI Components (PokemonCard, FloatingBackground, etc.)
   hooks/        // Custom hooks (usePokemon, useEvolutionChain, etc.)
   pages/        // Page Components (Home, Pokemon, etc.)
-  types/        // TypeScript Types (Pokemon Types, etc.)
   styles/       // Global CSS & Animations
+  e2e/          // End-to-end tests using Playwright
 ```
 
 ---
 
+## 🧪 Testing
+
+### Unit Tests
+Unit tests are written using [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
+
+To run unit tests:
+```bash
+npm run test
+```
+
+### End-to-end Tests
+End-to-end tests are written using [Playwright](https://playwright.dev/).
+
+To run end-to-end tests:
+```bash
+npm run test:e2e
+```
+
 ## 📦 Deployment
-Easily deployable on:
-- **Vercel**
-- **Netlify (Static Export Mode)**
-- **GitHub Pages (Static Export Mode)**
+
+Project is deployed on: **Vercel**. The site is also available on: [https://lets-go-pokemon.vercel.app](https://lets-go-pokemon.vercel.app)
 
 ---
 
