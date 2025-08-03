@@ -3,7 +3,7 @@ import { ArrowRightIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { useRef } from "react";
 import { EvolutionData } from "@/hooks/useEvolutionChain";
 
-interface EvolutionDrawerProps {
+export interface EvolutionDrawerProps {
   evolutions: EvolutionData[];
   gradient: string;
   onClose: () => void;
