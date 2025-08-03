@@ -24,11 +24,13 @@ export const PokemonCard = ({ pokemon: { id, name } }: { pokemon: PokemonNameIdD
   return (
     <Link href={`/pokemon/${id}`} legacyBehavior>
       <a
+        data-testid={`pokemon-card-${id}`}
         ref={ref}
         className={`rounded-xl shadow-lg p-4 bg-gradient-to-br ${gradient} text-white hover:scale-105 transition cursor-pointer flex flex-col items-center
         focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-400`}
       >
         <PokemonImage
+          data-testid="pokemon-image"
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
           alt={name}
           width={96}
@@ -36,14 +38,14 @@ export const PokemonCard = ({ pokemon: { id, name } }: { pokemon: PokemonNameIdD
           loading="lazy"
           className="mb-2 drop-shadow"
         />
-        <h2 className="text-lg font-bold capitalize truncate w-full text-center" title={name}>
+        <h2 data-testid="pokemon-name" className="text-lg font-bold capitalize truncate w-full text-center" title={name}>
           {name}
         </h2>
-        <div className="flex gap-2 mt-2 flex-wrap justify-center">
+        <div data-testid="pokemon-types" className="flex gap-2 mt-2 flex-wrap justify-center">
           {pokemon && !isLoading && !isError && (
             <>
               {pokemon.types.map((t) => (
-                <span key={t.type.name} className="text-xs bg-black bg-opacity-20 rounded-full px-2 py-1 capitalize">
+                <span key={t.type.name} data-testid="pokemon-type" className="text-xs bg-black bg-opacity-20 rounded-full px-2 py-1 capitalize">
                   {t.type.name}
                 </span>
               ))}

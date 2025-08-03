@@ -35,6 +35,7 @@ export const PokemonList = () => {
       {/* Sticky Header Input */}
       <div className="sticky top-0 z-50 bg-transparent backdrop-blur-md py-4 px-4 flex justify-center">
         <input
+          data-testid="search-input"
           type="text"
           placeholder="Explore the world of Pokémon"
           value={query}
@@ -45,12 +46,14 @@ export const PokemonList = () => {
 
       {/* Results Grid (Only when searching) */}
       {!isLanding && (
-        <div ref={parentRef} className="h-[80vh] overflow-auto px-4 pt-4 z-10 relative">
+        <div ref={parentRef} data-testid="pokemon-grid" className="h-[80vh] overflow-auto px-4 pt-4 z-10 relative">
           {isLoading && <div className="flex justify-center items-center h-full text-gray-500 text-xl">Loading...</div>}
           {isError && <div className="flex justify-center items-center h-full text-red-500 text-xl">Failed to fetch Pokémon.</div>}
 
           {filtered.length === 0 && !isLoading && !isError ? (
-            <div className="flex justify-center items-center h-full text-gray-500 text-xl">No Pokémon match your search.</div>
+            <div data-testid="no-results" className="flex justify-center items-center h-full text-gray-500 text-xl">
+              No Pokémon match your search.
+            </div>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 relative" style={{ height: virtualizer.getTotalSize() }}>
               {virtualizer.getVirtualItems().map((virtualRow) => {
