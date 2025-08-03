@@ -57,7 +57,7 @@ export const EvolutionDrawer = ({ evolutions, gradient, onClose }: EvolutionDraw
 
         <div className="flex gap-4 items-center overflow-x-auto pb-2">
           {evolutions.map((evo, index) => (
-            <div key={evo.id} className="flex items-center gap-4 px-1 py-2">
+            <div data-testid={`evo-card-${evo.id}`} key={evo.id} className="flex items-center gap-4 px-1 py-2">
               <Link onClick={onClose} href={`/pokemon/${evo.id}`} className="flex-shrink-0 text-center">
                 <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-md hover:scale-105 transition overflow-hidden">
                   <img src={evo.sprite} alt={evo.name} className="w-full h-full object-contain" />

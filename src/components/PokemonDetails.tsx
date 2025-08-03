@@ -76,12 +76,14 @@ export const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
                 style={{ backgroundColor: colorHex }}
                 aria-label="Show Evolution Drawer"
               >
-                <BeakerIcon className="w-6 h-6 text-white" />
+                <BeakerIcon data-testid="evolution-drawer-button" className="w-6 h-6 text-white" />
               </button>
             )}
           </div>
 
-          <h1 className="text-3xl font-bold capitalize">{pokemon.name}</h1>
+          <h1 data-testid="pokemon-name-heading" className="text-3xl font-bold capitalize">
+            {pokemon.name}
+          </h1>
           <div className="flex gap-2 mt-2">
             {pokemon.types.map((t) => (
               <span key={t.type.name} className="text-sm bg-black bg-opacity-20 rounded-full px-3 py-1">
