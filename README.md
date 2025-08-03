@@ -106,3 +106,21 @@ Feel free to fork and submit PRs for enhancements, bug fixes, or feature ideas.
 - [Next.js](https://nextjs.org/)
 - [Heroicons](https://heroicons.com/)
 - Inspiration from **Uniswap UI interactions** & **Pokémon Fans Worldwide**.
+
+## 🧠 Design Decisions & Challenges Faced
+
+### 🎨 Design Decisions:
+- **Modular Component Structure**: Each UI part (e.g., FloatingBackground, PokemonCard, EvolutionDrawer) is a self-contained component, ensuring scalability and reusability.
+- **Client-Side Search Filtering**: Since PokéAPI doesn't support server-side search queries, the app fetches a list of all Pokémon names and filters client-side for an instant UX.
+- **Virtualized Grid Rendering (react-virtual)**: To avoid performance bottlenecks with large datasets (1300+ Pokémon), virtualization ensures only visible items are rendered, keeping scroll smooth.
+- **Lazy Data Fetching (react-query + intersection observer)**: Pokémon details are fetched only when their card is in the viewport to prevent 1300+ parallel API requests.
+- **Floating Pokémon Background Inspired by Uniswap**: To create an immersive landing experience, floating Pokémon sprites subtly animate behind the search bar.
+- **Custom Drawer for Evolution Chain**: Instead of cluttering the Pokémon detail view, evolutions are revealed via a slide-up drawer with swipe gestures (mobile-app feel).
+
+### 🚧 Challenges Encountered:
+- **PokéAPI Limitation on Search Queries**: The API does not provide a direct search endpoint. This forced a hybrid solution: fetching a static list of names for fast filtering, and lazy-fetching detailed data as needed.
+- **Handling Massive Network Requests**: Fetching detailed data for every Pokémon initially caused 1300+ network calls. The solution was viewport-based lazy loading using `react-intersection-observer`.
+- **Image Fallback Handling**: Some Pokémon images from GitHub CDN are broken/missing. A custom fallback image component was created to gracefully swap to a placeholder on error.
+- **UX of Search Input Transition**: Ensuring a fluid UX transition from landing state to search results was tricky. The solution involved a sticky input bar and opacity/blur transitions to maintain visual continuity.
+- **Maintaining Animations with Performance**: Floating background Pokémon and hover animations needed to be subtle to not overwhelm mobile devices, requiring careful animation timing and resource-efficient CSS techniques.
+- **Visual Clarity on Keyboard Navigation**: Tabbing through cards lacked visual clarity initially. This was solved by enhancing focus-visible ring styles for better accessibility.
